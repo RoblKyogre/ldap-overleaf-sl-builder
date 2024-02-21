@@ -1,0 +1,21 @@
+name: Build CI
+on:
+  push:
+    branches: 
+      - "main"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Publish Image
+    container: ghcr.io/catthehacker/ubuntu:act-latest
+    steps:
+      - name: Clone ldap-overleaf-sl
+        run: |
+          git clone https://github.com/smhaller/ldap-overleaf-sl.git .
+      - name: Build ldap-overleaf-sl
+        run: |
+          bash scripts/extract_files.sh 4.2.0
+          bash scripts/apply_diffs.sh
+          make
