@@ -16,6 +16,10 @@ jobs:
       - name: Clone ldap-overleaf-sl
         run: |
           git clone https://github.com/smhaller/ldap-overleaf-sl.git .
+      - name: Checkout repo to subdir
+        uses: actions/checkout@v4
+        with:
+          path: './builder'
       - name: Build ldap-overleaf-sl
         run: |
           bash scripts/extract_files.sh 4.2.0
