@@ -16,10 +16,8 @@ jobs:
       - name: Clone ldap-overleaf-sl
         run: |
           git clone https://github.com/smhaller/ldap-overleaf-sl.git .
-      - name: Checkout repo to subdir
-        uses: actions/checkout@v4
-        with:
-          path: './builder'
+      - name: Inject scheme-full into image
+        run: echo "RUN tlmgr install scheme-full" >> ldap-overleaf-sl/Dockerfile
       - name: Build ldap-overleaf-sl
         run: |
           bash scripts/extract_files.sh 4.2.0
@@ -32,5 +30,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Push image
-        run: docker push ghcr.io/roblkyogre/ldap-overleaf-sl
+      - name: Tag and push image
+        run: |
+          docker tag ldap-overleaf-sl ghcr.io/roblkyogre/ldap-overleaf-sl:latest
+          docker push ghcr.io/roblkyogre/ldap-overleaf-sl:latest
