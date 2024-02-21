@@ -29,4 +29,4 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Push image
-        run: docker push ghcr.io/${{ github.actor }}/ldap-overleaf-sl
+        run: docker push ghcr.io/roblkyogre/ldap-overleaf-sl
