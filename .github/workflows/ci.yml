@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     name: Build and Publish Image
     steps:
       - name: Clone ldap-overleaf-sl
@@ -18,3 +21,12 @@ jobs:
           bash scripts/extract_files.sh 4.2.0
           bash scripts/apply_diffs.sh
           make
+      - name: Log into github registry
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push image
+        run: docker push ghcr.io/${{ github.actor }}/ldap-overleaf-sl
