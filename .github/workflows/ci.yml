@@ -15,9 +15,7 @@ jobs:
     steps:
       - name: Clone ldap-overleaf-sl
         run: |
-          git clone https://github.com/smhaller/ldap-overleaf-sl.git .
-      - name: Inject scheme-full into image
-        run: echo "RUN tlmgr update --self && tlmgr install scheme-full" >> ldap-overleaf-sl/Dockerfile
+          git clone -b patch-2 https://github.com/maurerle/ldap-overleaf-sl.git .
       - name: Build ldap-overleaf-sl
         run: |
           bash scripts/extract_files.sh 4.2.0
