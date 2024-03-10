@@ -16,8 +16,11 @@ jobs:
     name: Build and Publish Image
     steps:
       - name: Clone ldap-overleaf-sl
+        run: git clone -b master https://github.com/smhaller/ldap-overleaf-sl.git .
+      - name: Patch PR 43
         run: |
-          git clone -b master https://github.com/smhaller/ldap-overleaf-sl.git .
+          wget -O 43.diff https://patch-diff.githubusercontent.com/raw/smhaller/ldap-overleaf-sl/pull/43.diff
+          git apply 43.diff
       - name: Build ldap-overleaf-sl
         run: |
           bash scripts/extract_files.sh 4.2.0
