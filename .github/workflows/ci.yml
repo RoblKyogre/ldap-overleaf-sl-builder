@@ -15,11 +15,14 @@ jobs:
       packages: write
     name: Build and Publish Image
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Clone ldap-overleaf-sl
-        run: git clone -b 5.0.6 https://github.com/smhaller/ldap-overleaf-sl.git .
+        run: git clone -b 5.0.6 https://github.com/smhaller/ldap-overleaf-sl.git ldap-overleaf-sl
       - name: Apply Patches
         run: |
-          git apply certs.diff
+          cd ldap-overleaf-sl
+          git apply ../certs.diff
       - name: Build ldap-overleaf-sl
         run: |
           bash scripts/extract_files.sh 5.0.6
