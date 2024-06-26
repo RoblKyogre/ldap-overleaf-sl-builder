@@ -17,6 +17,9 @@ jobs:
     steps:
       - name: Clone ldap-overleaf-sl
         run: git clone -b 5.0.6 https://github.com/smhaller/ldap-overleaf-sl.git .
+      - name: Apply Patches
+        run: |
+          git apply certs.diff
       - name: Build ldap-overleaf-sl
         run: |
           bash scripts/extract_files.sh 5.0.6
