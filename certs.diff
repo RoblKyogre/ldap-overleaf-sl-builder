@@ -1,0 +1,13 @@
+diff --git a/ldap-overleaf-sl/Dockerfile b/ldap-overleaf-sl/Dockerfile
+index 4ebdaef..cda2ad1 100644
+--- a/ldap-overleaf-sl/Dockerfile
++++ b/ldap-overleaf-sl/Dockerfile
+@@ -20,7 +20,7 @@ RUN npm install -g npm && \
+     npm install ldap-escape ldapts-search ldapts@3.2.4 && \
+     # npm install bcrypt@5.0.0 && \
+     apt-get update && \
+-    apt-get -y install libxml-libxslt-perl cpanminus libbtparse2 python3-pygments 
++    apt-get -y install libxml-libxslt-perl cpanminus libbtparse2 python3-pygments ca-certificates
+     # now install latest texlive2023 from tlmgr
+ RUN wget -O /tmp/update-tlmgr-latest.sh http://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
+ RUN bash /tmp/update-tlmgr-latest.sh 
