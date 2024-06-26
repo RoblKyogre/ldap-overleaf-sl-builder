@@ -22,7 +22,7 @@ jobs:
       - name: Apply Patches
         run: |
           cd ldap-overleaf-sl
-          git apply ../certs.diff
+          git apply ../insecure-wget.diff
       - name: Build ldap-overleaf-sl
         run: |
           cd ldap-overleaf-sl

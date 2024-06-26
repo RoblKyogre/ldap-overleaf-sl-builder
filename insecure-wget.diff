@@ -1,0 +1,13 @@
+diff --git a/ldap-overleaf-sl/Dockerfile b/ldap-overleaf-sl/Dockerfile
+index 4ebdaef..360810e 100644
+--- a/ldap-overleaf-sl/Dockerfile
++++ b/ldap-overleaf-sl/Dockerfile
+@@ -22,7 +22,7 @@ RUN npm install -g npm && \
+     apt-get update && \
+     apt-get -y install libxml-libxslt-perl cpanminus libbtparse2 python3-pygments 
+     # now install latest texlive2023 from tlmgr
+-RUN wget -O /tmp/update-tlmgr-latest.sh http://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
++RUN wget --no-check-certificate -O /tmp/update-tlmgr-latest.sh http://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
+ RUN bash /tmp/update-tlmgr-latest.sh 
+ RUN tlmgr update --self --all  && \
+     tlmgr install scheme-full --verify-repo=none && \
